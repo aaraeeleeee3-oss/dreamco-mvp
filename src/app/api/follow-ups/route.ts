@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { createClient } from "@/lib/supabase-server"
-import { resend, sendEmail } from "@/lib/resend"
+import { sendEmail } from "@/lib/resend"
 import { generateColdEmail } from "@/lib/openai"
 
 // GET: Fetch pending follow-ups
