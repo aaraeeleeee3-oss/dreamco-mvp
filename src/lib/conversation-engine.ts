@@ -77,6 +77,7 @@ export type ObjectionFramework =
   | "direct_demo_close"
   | "adoption_framework"
   | "creative_budget"
+  | "social_proof_specifics"
 
 export interface LeadContext {
   name: string
@@ -120,7 +121,7 @@ export interface ObjectionResult {
   label: string
   detected: boolean
   confidence: number
-  framework: ObjectionFramework
+  framework: string
   response: string
 }
 
@@ -164,7 +165,7 @@ interface ObjectionConfig {
   id: ObjectionId
   label: string
   keywords: string[]
-  framework: ObjectionFramework
+  framework: string
   template: string
   followUp?: string
 }
@@ -443,9 +444,9 @@ export class ConversationEngine {
   constructor(config?: { openai?: OpenAI }) {
     this.openai =
       config?.openai ??
-      new OpenAI({
-        apiKey: process.env.OPENAI_API_KEY!,
-      })
+      (process.env.OPENAI_API_KEY
+        ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+        : (undefined as unknown as OpenAI))
   }
 
   // ── Personality ──────────────────────────────────────────

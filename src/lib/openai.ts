@@ -1,8 +1,18 @@
 import OpenAI from "openai"
 
-export const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY!,
-})
+let openaiInstance: OpenAI | null = null
+
+export function getOpenAI(): OpenAI {
+  if (!openaiInstance) {
+    if (!process.env.OPENAI_API_KEY) {
+      throw new Error("OPENAI_API_KEY environment variable is not set")
+    }
+    openaiInstance = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    })
+  }
+  return openaiInstance
+}
 
 const AI_SYSTEM_PROMPT = `You are DREAM.CO AI Sales Assistant — an elite AI SDR.
 You help sales teams close more deals by analyzing leads, writing outreach, and suggesting next steps.
@@ -28,7 +38,7 @@ export async function getAIResponse(
     ? `${AI_SYSTEM_PROMPT}\n\nLEAD CONTEXT:\n${leadContext}`
     : AI_SYSTEM_PROMPT
 
-  const response = await openai.chat.completions.create({
+  const response = await getOpenAI().chat.completions.create({
     model: "gpt-4o-mini",
     messages: [
       { role: "system", content: systemMessage },
@@ -49,7 +59,7 @@ export async function getAIResponseStream(
     ? `${AI_SYSTEM_PROMPT}\n\nLEAD CONTEXT:\n${leadContext}`
     : AI_SYSTEM_PROMPT
 
-  const stream = await openai.chat.completions.create({
+  const stream = await getOpenAI().chat.completions.create({
     model: "gpt-4o-mini",
     messages: [
       { role: "system", content: systemMessage },
@@ -81,7 +91,7 @@ export async function generateColdEmail(
 ) {
   const prompt = `Write a personalized cold email for:\nName: ${leadName}\nCompany: ${leadCompany}\nTitle: ${leadTitle}\n${context ? `Context: ${context}` : ""}\n\nThe email should be concise, value-first, and include a clear CTA to book a call.`
 
-  const response = await openai.chat.completions.create({
+  const response = await getOpenAI().chat.completions.create({
     model: "gpt-4o-mini",
     messages: [
       {
@@ -103,7 +113,7 @@ export async function analyzeLead(
 ) {
   const prompt = `Analyze this lead and provide: 1) Fit Score (1-10) 2) Recommended next action 3) Key talking points 4) Risk factors\n\nLead: ${JSON.stringify(leadData)}`
 
-  const response = await openai.chat.completions.create({
+  const response = await getOpenAI().chat.completions.create({
     model: "gpt-4o-mini",
     messages: [
       {
