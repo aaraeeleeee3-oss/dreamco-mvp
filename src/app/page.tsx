@@ -272,7 +272,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-4 gap-8">
             {[
               { step: "01", title: "Connect", desc: "Tell us about your business. We train the AI on your services, pricing, and schedule." },
-              { step: "02", title: "Configure", desc: "Set your AI's voice, tone, and booking rules. Customize what it says and how it sells." },
+              { step: "02", title: "Configure", desc: "Customize your AI's voice, personality, scripts, objection responses, and booking rules in our dashboard. No coding needed." },
               { step: "03", title: "Launch", desc: "Your AI employee goes live. It answers calls, chats leads, and books appointments." },
               { step: "04", title: "Scale", desc: "Track results in your dashboard. Add more AI agents as your business grows." },
             ].map((item, i) => (
