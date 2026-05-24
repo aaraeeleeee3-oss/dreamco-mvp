@@ -58,12 +58,12 @@ const industries = [
 const plans = [
   {
     name: "Starter",
-    price: "$997",
+    price: "$49",
     period: "/month",
     desc: "For small businesses ready to automate sales",
     features: [
       "1 AI Sales Agent",
-      "200 calls/month",
+      "200 leads/month",
       "AI chat + email follow-up",
       "Lead management dashboard",
       "Basic analytics",
@@ -74,12 +74,12 @@ const plans = [
   },
   {
     name: "Growth",
-    price: "$2,497",
+    price: "$149",
     period: "/month",
     desc: "For growing teams that need full automation",
     features: [
       "2 AI Sales Agents",
-      "500 calls/month",
+      "500 leads/month",
       "AI voice agent included",
       "Appointment booking system",
       "Multi-channel (email + SMS + chat)",
@@ -91,12 +91,12 @@ const plans = [
   },
   {
     name: "Scale",
-    price: "$4,997",
+    price: "$399",
     period: "/month",
     desc: "For businesses ready to dominate their market",
     features: [
       "5 AI Sales Agents",
-      "2,000 calls/month",
+      "2,000 leads/month",
       "WhatsApp + Instagram outreach",
       "CRM integration (HubSpot/Salesforce)",
       "Custom AI training on your data",
@@ -293,8 +293,8 @@ export default function HomePage() {
             <Badge className="mb-4 px-3 py-1" variant="secondary">PRICING</Badge>
             <h2 className="text-4xl font-bold mb-4">Less Than One Human Dispatcher</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              An AI dispatcher costs $997/mo. A human dispatcher costs $3,500/mo + benefits + PTO.
-              Your ROI is immediate.
+              Start with a <strong>7-day free trial</strong>. No credit card required.
+              An AI dispatcher for just $49/mo vs $3,500/mo for a human. Your ROI is immediate.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
