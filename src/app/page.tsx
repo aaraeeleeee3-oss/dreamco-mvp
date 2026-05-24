@@ -333,7 +333,7 @@ export default function HomePage() {
           </div>
           <div className="text-center mt-8">
             <p className="text-sm text-muted-foreground">
-              All plans include 14-day free trial. No credit card required.{' '}
+              All plans include 7-day free trial. No credit card required.{' '}
               <a href="#faq" className="text-primary hover:underline">See FAQ</a>
             </p>
           </div>
