@@ -151,7 +151,7 @@ COMMENT ON COLUMN chat_messages.metadata IS 'Conversation metadata: {state, pers
 -- ============================================================
 
 -- Call Recordings: org isolation
-CREATE POLICY IF NOT EXISTS "Call recordings org isolation" ON call_recordings
+CREATE POLICY "Call recordings org isolation" ON call_recordings
   FOR ALL USING (
     organization_id IN (
       SELECT organization_id FROM users WHERE id = auth.uid()
@@ -159,7 +159,7 @@ CREATE POLICY IF NOT EXISTS "Call recordings org isolation" ON call_recordings
   );
 
 -- Conversation Memory: org isolation
-CREATE POLICY IF NOT EXISTS "Conversation memory org isolation" ON conversation_memory
+CREATE POLICY "Conversation memory org isolation" ON conversation_memory
   FOR ALL USING (
     organization_id IN (
       SELECT organization_id FROM users WHERE id = auth.uid()
@@ -167,7 +167,7 @@ CREATE POLICY IF NOT EXISTS "Conversation memory org isolation" ON conversation_
   );
 
 -- Campaign Sequence Steps: org isolation
-CREATE POLICY IF NOT EXISTS "Campaign sequence steps org isolation" ON campaign_sequence_steps
+CREATE POLICY "Campaign sequence steps org isolation" ON campaign_sequence_steps
   FOR ALL USING (
     organization_id IN (
       SELECT organization_id FROM users WHERE id = auth.uid()

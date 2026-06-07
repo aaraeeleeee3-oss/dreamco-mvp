@@ -181,37 +181,37 @@ CREATE INDEX IF NOT EXISTS idx_follow_ups_status ON follow_ups(status);
 -- RLS Policies
 
 -- Users: can see their own org's users
-CREATE POLICY IF NOT EXISTS "Users can view own org" ON users
+CREATE POLICY "Users can view own org" ON users
   FOR SELECT USING (organization_id IN (
     SELECT organization_id FROM users WHERE id = auth.uid()
   ));
 
 -- Leads: org isolation
-CREATE POLICY IF NOT EXISTS "Leads org isolation" ON leads
+CREATE POLICY "Leads org isolation" ON leads
   FOR ALL USING (organization_id IN (
     SELECT organization_id FROM users WHERE id = auth.uid()
   ));
 
 -- Deals: org isolation
-CREATE POLICY IF NOT EXISTS "Deals org isolation" ON deals
+CREATE POLICY "Deals org isolation" ON deals
   FOR ALL USING (organization_id IN (
     SELECT organization_id FROM users WHERE id = auth.uid()
   ));
 
 -- Campaigns: org isolation
-CREATE POLICY IF NOT EXISTS "Campaigns org isolation" ON campaigns
+CREATE POLICY "Campaigns org isolation" ON campaigns
   FOR ALL USING (organization_id IN (
     SELECT organization_id FROM users WHERE id = auth.uid()
   ));
 
 -- Appointments: org isolation
-CREATE POLICY IF NOT EXISTS "Appointments org isolation" ON appointments
+CREATE POLICY "Appointments org isolation" ON appointments
   FOR ALL USING (organization_id IN (
     SELECT organization_id FROM users WHERE id = auth.uid()
   ));
 
 -- Follow-ups: org isolation
-CREATE POLICY IF NOT EXISTS "Follow ups org isolation" ON follow_ups
+CREATE POLICY "Follow ups org isolation" ON follow_ups
   FOR ALL USING (organization_id IN (
     SELECT organization_id FROM users WHERE id = auth.uid()
   ));
